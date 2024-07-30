@@ -11,7 +11,7 @@ const baseUrl = "/api/v1";
 
 app.use(baseUrl, products);
 
-//moddleware to handle errors
+//moddleware to handle errors 
 app.use(errorMiddleware);
 
 module.exports = app;

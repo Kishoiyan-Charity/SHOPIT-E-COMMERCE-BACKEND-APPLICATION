@@ -22,6 +22,19 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 
     error.message = err.message
 
+    //wrong mongoooes object id error
+    if(err.name === 'CastError') {
+        const message = `resource not found. Invalid: ${err.path}`
+        error = new ErrorHandler(message, 400)
+    }
+
+    //HANDLING mongoose VALIDATION ERROR
+    if(err.name === 'ValidationError') {
+        const message = object.values(err.errors).map(value => value.message)
+        error = new ErrorHandler(message, 400)
+    }
+
+
     res.status(err.statusCode).json({
         success: false,
         error: error.message || 'Internal Server Error'
