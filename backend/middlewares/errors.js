@@ -43,13 +43,13 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 
     //handling wrong jwt error
     if(err.name === 'JsonWebTokenError') {
-        const message = "nJSON Web Token is invalid, TRy again"
+        const message = "nJSON Web Token is invalid, TRy again!!!"
         error = new ErrorHandler(message, 400)
     }
 
      //handling expired jwt error
-     if(err.name === 'JsonWebTokenError') {
-        const message = "nJSON Web Token is invalid, TRy again"
+     if(err.name === 'TokenExpiredError') {
+        const message = "nJSON Web Token is expired, Try again!!!"
         error = new ErrorHandler(message, 400)
     }
 
