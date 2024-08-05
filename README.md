@@ -30,6 +30,7 @@ This is the backend for an e-commerce application built using the MERN stack. Th
    * SMTP_PASS=your_smtp_password
 
   ## Run Application
-  npm run dev // yarn dev
+     * npm run dev
+     * npm run prod
 
 
