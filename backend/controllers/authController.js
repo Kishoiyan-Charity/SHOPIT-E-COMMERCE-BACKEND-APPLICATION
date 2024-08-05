@@ -89,7 +89,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//reset PASSWORD /api/v1/password/reset/token
+//reset password /api/v1/password/reset/token
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   //hash url
   const resetPasswordToken = crypto
@@ -151,7 +151,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 })
 
-//update users profile
+//update users profile /api/v1/me/update
 exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData ={
     name: req.body.name,
@@ -197,4 +197,62 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
     success: true,
     users
   })
+})
+
+
+//get user details  /api/v1/user/:id
+exports.getUserDetails = catchAsyncErrors( async (req, res, next) => {
+  const user = await User.findById(req.params.id)
+
+  if(!user) {
+    return next(new ErrorHandler(`User not found with id: ${req.params.id}`))
+  }
+
+  res.status(200).json({
+    success: true,
+    user
+
+  })
+  
+})
+
+
+//update user profile  /api/v1/admin/user/:id
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+  const newUserData ={
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role
+  }
+
+
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    })
+    res.status(200).json({
+      success: true
+    })
+})
+
+//delete user   /api/v1/user/:id
+exports.deleteUser = catchAsyncErrors( async (req, res, next) => {
+  const user = await User.findById(req.params.id)
+
+  if(!user) {
+    return next(new ErrorHandler(`User not found with id: ${req.params.id}`))
+  }
+
+  //remove avatar from cloudinary TODO
+  
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    
+
+  })
+  
 })
