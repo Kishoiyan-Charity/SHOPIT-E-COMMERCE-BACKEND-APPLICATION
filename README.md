@@ -21,13 +21,13 @@ This is the backend for an e-commerce application built using the MERN stack. Th
 * Clone the repository: git clone https://github.com/Kishoiyan-Charity1/SHOPTIT
 * Install dependencies: npm install or yarn install
 * Create a .env file in the root directory and add the following environment variables:
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   SMTP_HOST=smtp.mailtrap.io
-   SMTP_PORT=2525
-   SMTP_USER=your_smtp_username
-   SMTP_PASS=your_smtp_password
+   ** PORT=5000
+   ** MONGO_URI=your_mongodb_connection_string
+   ** JWT_SECRET=your_jwt_secret
+   ** SMTP_HOST=smtp.mailtrap.io
+   ** SMTP_PORT=2525
+   ** SMTP_USER=your_smtp_username
+   ** SMTP_PASS=your_smtp_password
 
   ## Run Application
   npm run dev // yarn dev
